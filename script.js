@@ -1,35 +1,31 @@
 'use strict';
 
 const arr1 = [1, 2, 3];
-const arr2 = [1, 4, 4];
+const arr2 = [4, 4, 1];
 
 console.log(`is ${arr1} same as ${arr2} ? ${same(arr1, arr2)}`);
 
 function same(arr1, arr2) {
   if (arr1.length !== arr2.length) return false;
 
-  const counter1 = arrToObj(arr1);
-  const counter2 = arrToObj(arr2);
+  const map1 = arrToMap(arr1);
+  const map2 = arrToMap(arr2);
 
-  for (const k1 of Object.keys(counter1)) {
-    const num1 = Number(k1);
-    const num2 = Math.pow(num1, 2);
+  for (const [k1, v1] of map1.entries()) {
+    const k2 = k1 ** 2;
+    const v2 = map2.get(k2);
 
-    if (
-      !counter2[String(num2)] ||
-      counter1[String(num1)] !== counter2[String(num2)]
-    )
-      return false;
+    if (!v2 || v1 !== v2) return false;
   }
   return true;
 }
 
-function arrToObj(arr1) {
-  const result = {};
+function arrToMap(arr) {
+  const result = new Map();
 
-  arr1.forEach(el => {
-    if (result[el]) result[el] += 1;
-    else result[el] = 1;
+  arr.forEach(el => {
+    if (result.get(el)) result.set(el, result.get(el) + 1);
+    else result.set(el, 1);
   });
 
   return result;
