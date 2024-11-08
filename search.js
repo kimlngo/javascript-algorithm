@@ -42,3 +42,37 @@ function binarySearch(arr, num) {
 
   return -1;
 }
+
+console.log('#### Search String ####');
+
+console.log('wowomgzomg', 'omg', naiveSearchString('wowomgzomg', 'omg'));
+console.log(
+  'harold said haha in hamburg',
+  'haha',
+  naiveSearchString('harold said haha in hamburg', 'haha')
+);
+console.log(
+  'the complete javascript course 2024',
+  'java',
+  naiveSearchString('the complete javascript course 2024', 'java')
+);
+
+console.log('abcoooodef', 'ooo', naiveSearchString('abcoooodef', 'ooo'));
+console.log('abcoooodef', 'ooo', naiveSearchString('abcoooodef', 'oo'));
+console.log('abcoooodef', 'uio', naiveSearchString('abcoooodef', 'uio'));
+
+function naiveSearchString(str, patt) {
+  let count = 0;
+
+  for (let i = 0; i <= str.length - patt.length; i++) {
+    if (str[i] !== patt[0]) continue;
+
+    for (let j = 1; j < patt.length; j++) {
+      if (str[i + j] !== patt[j]) break;
+
+      //looped through and all match -> count++
+      if (j === patt.length - 1) count++;
+    }
+  }
+  return count;
+}
