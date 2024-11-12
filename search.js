@@ -58,7 +58,7 @@ console.log(
 );
 
 console.log('abcoooodef', 'ooo', naiveSearchString('abcoooodef', 'ooo'));
-console.log('abcoooodef', 'ooo', naiveSearchString('abcoooodef', 'oo'));
+console.log('abcoooodef', 'oo', naiveSearchString('abcoooodef', 'oo'));
 console.log('abcoooodef', 'uio', naiveSearchString('abcoooodef', 'uio'));
 
 function naiveSearchString(str, patt) {
