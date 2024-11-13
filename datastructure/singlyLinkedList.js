@@ -24,7 +24,7 @@ class SinglyLinkedList {
       this.tail.next = node;
       this.tail = node;
     }
-    this.length += 1;
+    this.length++;
     return this;
   }
 
@@ -77,6 +77,7 @@ class SinglyLinkedList {
       this.head = newNode;
     }
     this.length++;
+    return this;
   }
 
   get(index) {
@@ -93,6 +94,24 @@ class SinglyLinkedList {
     if (!node) return false;
 
     node.val = val;
+    return true;
+  }
+
+  insert(index, val) {
+    if (index < 0 || index > this.length) return false;
+
+    if (index === 0) {
+      return !!this.unshift(val);
+    } else if (index === this.length) {
+      return !!this.push(val);
+    }
+
+    let before = this.get(index - 1);
+    let after = before.next;
+    let newNode = new Node(val);
+    newNode.next = after;
+    before.next = newNode;
+    this.length++;
     return true;
   }
   clear() {
