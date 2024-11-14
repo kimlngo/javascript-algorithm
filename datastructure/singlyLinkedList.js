@@ -114,6 +114,20 @@ class SinglyLinkedList {
     this.length++;
     return true;
   }
+
+  remove(index) {
+    if (index < 0 || index >= this.length) return null;
+
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+
+    const pre = this.get(index - 1);
+    const cur = pre.next;
+    pre.next = cur.next;
+    this.length--;
+    return cur;
+  }
+
   clear() {
     this.head = null;
     this.tail = null;
