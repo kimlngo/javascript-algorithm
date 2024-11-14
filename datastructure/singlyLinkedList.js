@@ -128,6 +128,23 @@ class SinglyLinkedList {
     return cur;
   }
 
+  reverse() {
+    //swap head & tail first
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+
+    let next;
+    let pre = null;
+    for (let i = 0; i < this.length; i++) {
+      next = node.next;
+      node.next = pre;
+
+      pre = node;
+      node = next;
+    }
+    return this;
+  }
   clear() {
     this.head = null;
     this.tail = null;
@@ -147,6 +164,7 @@ class SinglyLinkedList {
 }
 
 const list = new SinglyLinkedList();
+list.push(1);
 list.push(2);
 list.push(3);
 list.push(4);
