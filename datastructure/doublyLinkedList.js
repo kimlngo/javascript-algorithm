@@ -74,6 +74,45 @@ class DoublyLinkedList {
     return this;
   }
 
+  get(index) {
+    if (index < 0 || index >= this.length) return null;
+
+    if (index === 0) return this.head;
+    else if (index === this.length - 1) return this.tail;
+    else {
+      let count, current;
+
+      if (index <= this.length / 2) {
+        //traverse from head
+        count = 0;
+        current = this.head;
+        while (count !== index) {
+          current = current.next;
+          count++;
+        }
+      } else {
+        //traverse from tail
+        count = this.length - 1;
+        current = this.tail;
+        while (count !== index) {
+          current = current.pre;
+          count--;
+        }
+      }
+      return current;
+    }
+  }
+
+  set(index, val) {
+    const node = this.get(index);
+
+    if (node) {
+      node.val = val;
+      return true;
+    }
+    return false;
+  }
+
   print() {
     const values = [];
 
@@ -88,3 +127,19 @@ class DoublyLinkedList {
 }
 
 const dll = new DoublyLinkedList();
+for (let i = 0; i < 10; i++) {
+  dll.push(i);
+}
+dll.print();
+console.log('-----');
+for (let i = 0; i < 10; i++) {
+  console.log(dll.get(i));
+}
+
+console.log(dll.set(-1, 1000));
+console.log(dll.set(10, 1000));
+
+for (let i = 0; i < dll.length; i++) {
+  dll.set(i, dll.get(i).val * 100);
+}
+dll.print();
