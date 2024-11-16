@@ -43,6 +43,37 @@ class DoublyLinkedList {
     return popNode;
   }
 
+  shift() {
+    if (this.length === 0) return null;
+
+    const removeNode = this.head;
+    if (this.length === 1) {
+      [this.head, this.tail] = [null, null];
+    } else {
+      this.head = this.head.next;
+      this.head.pre = null;
+      removeNode.next = null;
+    }
+
+    this.length--;
+    return removeNode;
+  }
+
+  unshift(val) {
+    const newNode = new Node(val);
+
+    if (this.length === 0) {
+      [this.head, this.tail] = [newNode, newNode];
+    } else {
+      this.head.pre = newNode;
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+
+    this.length++;
+    return this;
+  }
+
   print() {
     const values = [];
 
@@ -57,16 +88,3 @@ class DoublyLinkedList {
 }
 
 const dll = new DoublyLinkedList();
-dll.push(1);
-dll.print();
-dll.push(2);
-dll.print();
-dll.push(3);
-dll.print();
-
-console.log(dll.pop());
-dll.print();
-console.log(dll.pop());
-dll.print();
-console.log(dll.pop());
-dll.print();
