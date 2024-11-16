@@ -29,7 +29,7 @@ class DoublyLinkedList {
   }
 
   pop() {
-    if (this.length === 0) return null;
+    if (this.length === 0) return undefined;
 
     const popNode = this.tail;
     if (this.length === 1) {
@@ -75,7 +75,7 @@ class DoublyLinkedList {
   }
 
   get(index) {
-    if (index < 0 || index >= this.length) return null;
+    if (index < 0 || index >= this.length) return undefined;
 
     if (index === 0) return this.head;
     else if (index === this.length - 1) return this.tail;
@@ -154,6 +154,22 @@ class DoublyLinkedList {
     return foundNode;
   }
 
+  reverse() {
+    let cur = this.tail;
+    let tmp = null;
+
+    for (let i = 0; i < this.length; i++) {
+      cur.next = cur.prev;
+      cur.prev = tmp;
+
+      tmp = cur;
+      cur = cur.next;
+    }
+    [this.head, this.tail] = [this.tail, this.head];
+
+    return this;
+  }
+
   print() {
     const values = [];
 
@@ -172,15 +188,4 @@ for (let i = 0; i < 7; i++) {
 }
 
 dll.print();
-console.log(dll.remove(-1));
-console.log(dll.remove(7));
-
-console.log(dll.remove(0)); //return 0
-console.log(dll.remove(5)); //return 3
-
-//dll = 1 <-> 2 <-> 3 <-> 4 <-> 5
-console.log(dll.remove(1)); //2
-dll.print();
-
-console.log(dll.remove(2)); //4
-dll.print();
+dll.reverse().print();
