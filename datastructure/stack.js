@@ -11,40 +11,40 @@ class Stack {
   constructor() {
     this.first = null;
     this.last = null;
-    this.length = 0;
+    this.size = 0;
   }
 
   push(val) {
     const newNode = new Node(val);
 
-    if (this.length === 0) {
+    if (this.size === 0) {
       [this.first, this.last] = [newNode, newNode];
     } else {
       newNode.next = this.first;
       this.first = newNode;
     }
 
-    this.length++;
-    return this.length;
+    this.size++;
+    return this.size;
   }
 
   pop() {
-    if (this.length === 0) return null;
+    if (this.size === 0) return null;
     const popNode = this.first;
 
-    if (this.length === 1) {
+    if (this.size === 1) {
       [this.first, this.last] = [null, null];
     } else {
       this.first = popNode.next;
       popNode.next = null;
     }
 
-    this.length--;
+    this.size--;
     return popNode.val;
   }
 
   print() {
-    if (this.length === 0) {
+    if (this.size === 0) {
       console.log('-- empty --');
       return;
     }
@@ -56,7 +56,7 @@ class Stack {
       cur = cur.next;
     }
 
-    console.log(`--- length: ${this.length} --- ${arr.join(' ')} ---`);
+    console.log(`--- length: ${this.size} --- ${arr.join(' ')} ---`);
   }
 }
 
@@ -70,7 +70,7 @@ stack.push(3);
 stack.print();
 
 console.log('--- pop ---');
-console.log(stack.pop(), stack.length);
-console.log(stack.pop(), stack.length);
-console.log(stack.pop(), stack.length);
-console.log(stack.pop(), stack.length);
+console.log(stack.pop(), stack.size);
+console.log(stack.pop(), stack.size);
+console.log(stack.pop(), stack.size);
+console.log(stack.pop(), stack.size);
