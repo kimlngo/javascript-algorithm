@@ -63,6 +63,23 @@ class BinarySearchTree {
       else cur = cur.right;
     }
   }
+
+  breathFirstSearch_1() {
+    if (!this.root) return [];
+
+    let queue = [];
+    queue.push(this.root);
+    let index = 0;
+    while (index < queue.length) {
+      if (queue[index].left) queue.push(queue[index].left);
+
+      if (queue[index].right) queue.push(queue[index].right);
+
+      index++;
+    }
+
+    return queue.map(node => node.value);
+  }
 }
 
 const bst = new BinarySearchTree();
@@ -75,3 +92,4 @@ bst.insert(11);
 bst.insert(16);
 
 console.log(bst);
+bst.breathFirstSearch();
