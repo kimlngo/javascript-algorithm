@@ -80,6 +80,24 @@ class BinarySearchTree {
 
     return queue.map(node => node.value);
   }
+
+  breathFirstSearch_2() {
+    if (!this.root) return [];
+
+    const queue = [this.root];
+    const visited = [];
+    let node = undefined;
+
+    while (queue.length !== 0) {
+      node = queue.shift();
+      visited.push(node);
+
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+
+    return visited.map(node => node.value);
+  }
 }
 
 const bst = new BinarySearchTree();
@@ -92,4 +110,5 @@ bst.insert(11);
 bst.insert(16);
 
 console.log(bst);
-bst.breathFirstSearch();
+console.log(bst.breathFirstSearch_1());
+console.log(bst.breathFirstSearch_2());
