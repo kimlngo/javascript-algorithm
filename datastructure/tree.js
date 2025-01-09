@@ -78,7 +78,7 @@ class BinarySearchTree {
       index++;
     }
 
-    return queue.map(node => node.value);
+    return queue.map(node => node.value).join(', ');
   }
 
   breathFirstSearch_2() {
@@ -96,7 +96,7 @@ class BinarySearchTree {
       if (node.right) queue.push(node.right);
     }
 
-    return visited.map(node => node.value);
+    return visited.map(node => node.value).join(', ');
   }
 
   depthFirstSearch_PreOrder() {
@@ -115,16 +115,32 @@ class BinarySearchTree {
 
     return visited.map(node => node.value).join(', ');
   }
+
+  depthFirstSearch_PostOrder() {
+    if (!this.root) return undefined;
+
+    const visited = [];
+
+    const traverse = function (node) {
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+
+      visited.push(node);
+    };
+
+    traverse(this.root);
+
+    return visited.map(node => node.value).join(', ');
+  }
 }
 
 const bst = new BinarySearchTree();
 bst.insert(10);
-bst.insert(5);
-bst.insert(13);
-bst.insert(2);
-bst.insert(7);
-bst.insert(11);
-bst.insert(16);
+bst.insert(6);
+bst.insert(3);
+bst.insert(8);
+bst.insert(15);
+bst.insert(20);
 
 console.log(bst);
 console.log('breathFirstSearch - 1');
@@ -135,3 +151,6 @@ console.log(bst.breathFirstSearch_2());
 
 console.log('depthFirstSearch - pre-order');
 console.log(bst.depthFirstSearch_PreOrder());
+
+console.log('depthFirstSearch - post-order');
+console.log(bst.depthFirstSearch_PostOrder());
