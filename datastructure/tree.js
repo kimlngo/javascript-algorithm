@@ -78,7 +78,7 @@ class BinarySearchTree {
       index++;
     }
 
-    return queue.map(node => node.value).join(', ');
+    return queue.map(node => node.value);
   }
 
   breathFirstSearch_2() {
@@ -96,7 +96,7 @@ class BinarySearchTree {
       if (node.right) queue.push(node.right);
     }
 
-    return visited.map(node => node.value).join(', ');
+    return visited.map(node => node.value);
   }
 
   depthFirstSearch_PreOrder() {
@@ -113,7 +113,7 @@ class BinarySearchTree {
 
     traverse(this.root);
 
-    return visited.map(node => node.value).join(', ');
+    return visited.map(node => node.value);
   }
 
   depthFirstSearch_PostOrder() {
@@ -130,7 +130,22 @@ class BinarySearchTree {
 
     traverse(this.root);
 
-    return visited.map(node => node.value).join(', ');
+    return visited.map(node => node.value);
+  }
+
+  depthFirstSearch_InOrder() {
+    if (!this.root) return undefined;
+
+    const visited = [];
+
+    const traverse = function (node) {
+      if (node.left) traverse(node.left);
+      visited.push(node);
+      if (node.right) traverse(node.right);
+    };
+
+    traverse(this.root);
+    return visited.map(node => node.value);
   }
 }
 
@@ -154,3 +169,6 @@ console.log(bst.depthFirstSearch_PreOrder());
 
 console.log('depthFirstSearch - post-order');
 console.log(bst.depthFirstSearch_PostOrder());
+
+console.log('depthFirstSearch - in-order');
+console.log(bst.depthFirstSearch_InOrder());
