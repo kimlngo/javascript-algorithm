@@ -98,6 +98,23 @@ class BinarySearchTree {
 
     return visited.map(node => node.value);
   }
+
+  depthFirstSearch_PreOrder() {
+    if (!this.root) return undefined;
+
+    const visited = [];
+
+    const traverse = function (node) {
+      visited.push(node);
+
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+    };
+
+    traverse(this.root);
+
+    return visited.map(node => node.value).join(', ');
+  }
 }
 
 const bst = new BinarySearchTree();
@@ -110,5 +127,11 @@ bst.insert(11);
 bst.insert(16);
 
 console.log(bst);
+console.log('breathFirstSearch - 1');
 console.log(bst.breathFirstSearch_1());
+
+console.log('breathFirstSearch - 2');
 console.log(bst.breathFirstSearch_2());
+
+console.log('depthFirstSearch - pre-order');
+console.log(bst.depthFirstSearch_PreOrder());
