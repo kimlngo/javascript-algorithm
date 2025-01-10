@@ -147,6 +147,21 @@ class BinarySearchTree {
     traverse(this.root);
     return visited.map(node => node.value);
   }
+
+  depthFirstSearch_InReverseOrder() {
+    if (!this.root) return undefined;
+
+    const visited = [];
+
+    const traverse = function (node) {
+      if (node.right) traverse(node.right);
+      visited.push(node);
+      if (node.left) traverse(node.left);
+    };
+
+    traverse(this.root);
+    return visited.map(node => node.value);
+  }
 }
 
 const bst = new BinarySearchTree();
@@ -172,3 +187,6 @@ console.log(bst.depthFirstSearch_PostOrder());
 
 console.log('depthFirstSearch - in-order');
 console.log(bst.depthFirstSearch_InOrder());
+
+console.log('depthFirstSearch - in-reverse-order');
+console.log(bst.depthFirstSearch_InReverseOrder());
