@@ -22,16 +22,67 @@ class MaxBinaryHeap {
       childIndex = parentIndex;
       parentIndex = Math.floor((childIndex - 1) / 2);
     }
+  }
 
-    console.log(this.values);
+  extractMax() {
+    //swap first and last
+    //prettier-ignore
+    const length = this.values.length;
+
+    if (length === 0) return undefined;
+
+    const end = length - 1;
+    this.swap(this.values, 0, end);
+    const max = this.values.pop();
+    let idx = 0,
+      leftIdx = undefined,
+      rightIdx = undefined;
+
+    while (true) {
+      leftIdx = idx * 2 + 1;
+      rightIdx = idx * 2 + 2;
+
+      if (
+        this.values[idx] < this.values[leftIdx] &&
+        this.values[idx] < this.values[rightIdx]
+      ) {
+        if (this.values[leftIdx] > this.values[rightIdx]) {
+          //swapt with left side
+          this.swap(this.values, idx, leftIdx);
+          idx = leftIdx;
+        } else {
+          //swapt with right side
+          this.swap(this.values, idx, rightIdx);
+          idx = rightIdx;
+        }
+      } else if (this.values[idx] < this.values[leftIdx]) {
+        //swapt with left side
+        this.swap(this.values, idx, leftIdx);
+        idx = leftIdx;
+      } else if (this.values[idx] < this.values[rightIdx]) {
+        //swapt with right side
+        this.swap(this.values, idx, rightIdx);
+        idx = rightIdx;
+      } else break;
+    }
+
+    return max;
+  }
+
+  swap(array, from, to) {
+    [array[from], array[to]] = [array[to], array[from]];
   }
 }
 
-const maxBinaryHeap = new MaxBinaryHeap();
-maxBinaryHeap.insert(41);
-maxBinaryHeap.insert(39);
-maxBinaryHeap.insert(33);
-maxBinaryHeap.insert(18);
-maxBinaryHeap.insert(27);
-maxBinaryHeap.insert(12);
-maxBinaryHeap.insert(55);
+const heap = new MaxBinaryHeap();
+heap.insert(41);
+heap.insert(39);
+heap.insert(33);
+heap.insert(18);
+heap.insert(27);
+heap.insert(12);
+heap.insert(55);
+
+console.log(heap.values);
+// console.log(maxBinaryHeap.extractMax());
+// console.log(maxBinaryHeap.values);
