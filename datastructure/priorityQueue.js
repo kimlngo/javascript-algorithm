@@ -12,8 +12,8 @@ class PriorityQueue {
     this.values = [];
   }
 
-  enqueue(node) {
-    this.values.push(node);
+  enqueue(value, priority) {
+    this.values.push(new PQueueNode(value, priority));
 
     let childIdx = this.values.length - 1;
     let parentIdx = Math.floor((childIdx - 1) / 2);
@@ -82,14 +82,10 @@ class PriorityQueue {
 }
 
 const pqueue = new PriorityQueue();
-pqueue.enqueue(new PQueueNode('41', 41));
-pqueue.enqueue(new PQueueNode('39', 39));
-pqueue.enqueue(new PQueueNode('33', 33));
-pqueue.enqueue(new PQueueNode('18', 18));
-pqueue.enqueue(new PQueueNode('27', 27));
-pqueue.enqueue(new PQueueNode('12', 12));
-pqueue.enqueue(new PQueueNode('55', 55));
+pqueue.enqueue('common cold', 5);
+pqueue.enqueue('gunshot wound', 1);
+pqueue.enqueue('high fever', 4);
+pqueue.enqueue('broken arm', 2);
+pqueue.enqueue('glass in foot', 3);
 
 console.log(pqueue.values.map(node => node.value));
-// console.log(maxBinaryHeap.extractMax());
-// console.log(maxBinaryHeap.values);
