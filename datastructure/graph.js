@@ -21,16 +21,13 @@ class Graph {
     this.adjacencyList[v2].splice(this.adjacencyList[v2].indexOf(v1), 1);
   }
 
-  removeVertex(deletedVertex) {
-    console.log(this.adjacencyList[deletedVertex]);
-    for (let node of this.adjacencyList[deletedVertex]) {
-      console.log(node);
-      this.removeEdge(deletedVertex, node);
-    }
-    // this.adjacencyList[deletedVertex].forEach(edge =>
-    //   this.removeEdge(deletedVertex, edge)
-    // );
-    delete this.adjacencyList[deletedVertex];
+  removeVertex(vertex) {
+    //delete the edges first
+    const connections = [...this.adjacencyList[vertex]];
+    connections.forEach(vert => this.removeEdge(vert, vertex));
+
+    //delete the vertex
+    delete this.adjacencyList[vertex];
   }
 }
 
@@ -49,4 +46,5 @@ g.addEdge('Dallas', 'Hong Kong');
 g.addEdge('Dallas', 'Los Angeles');
 
 g.addEdge('Hong Kong', 'Los Angeles');
+g.addEdge('Aspen', 'Los Angeles');
 console.log(g.adjacencyList);
