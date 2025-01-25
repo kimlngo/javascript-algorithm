@@ -31,22 +31,45 @@ class Graph {
     //delete the vertex
     delete this.adjacencyList[vertex];
   }
+
+  dfsRecursive(vertex) {
+    const result = [];
+    const visited = {};
+
+    function dfs(vert) {
+      if (!vert) return;
+
+      visited[vert] = true;
+      result.push(vert);
+
+      this.adjacencyList[vert].forEach(n => {
+        if (!visited[n]) dfs.call(this, n);
+      });
+    }
+
+    dfs.call(this, vertex);
+
+    return result;
+  }
 }
 
 const g = new Graph();
-g.addVertex('Tokyo');
-g.addVertex('Dallas');
-g.addVertex('Aspen');
-g.addVertex('Hong Kong');
-g.addVertex('Los Angeles');
 
-g.addEdge('Tokyo', 'Dallas');
-g.addEdge('Tokyo', 'Hong Kong');
+g.addVertex('A');
+g.addVertex('B');
+g.addVertex('C');
+g.addVertex('D');
+g.addVertex('E');
+g.addVertex('F');
 
-g.addEdge('Dallas', 'Aspen');
-g.addEdge('Dallas', 'Hong Kong');
-g.addEdge('Dallas', 'Los Angeles');
+g.addEdge('A', 'B');
+g.addEdge('A', 'C');
+g.addEdge('B', 'D');
+g.addEdge('C', 'E');
+g.addEdge('D', 'E');
+g.addEdge('D', 'F');
+g.addEdge('E', 'F');
 
-g.addEdge('Hong Kong', 'Los Angeles');
-g.addEdge('Aspen', 'Los Angeles');
 console.log(g.adjacencyList);
+
+console.log(g.DFSRecursive('A'));
