@@ -32,7 +32,7 @@ class Graph {
     delete this.adjacencyList[vertex];
   }
 
-  dfsRecursive(vertex) {
+  dfsRecursive(start) {
     const result = [];
     const visited = {};
 
@@ -47,7 +47,28 @@ class Graph {
       });
     }
 
-    dfs.call(this, vertex);
+    dfs.call(this, start);
+
+    return result;
+  }
+
+  dfsIterative(start) {
+    const stack = [start];
+    const result = [];
+    const visited = {};
+    let cur;
+    while (stack.length) {
+      cur = stack.pop();
+
+      if (visited[cur]) continue;
+
+      result.push(cur);
+      visited[cur] = true;
+
+      this.adjacencyList[cur]
+        .filter(neighbor => !visited[neighbor] && !stack.includes(neighbor))
+        .forEach(v => stack.push(v));
+    }
 
     return result;
   }
@@ -72,4 +93,5 @@ g.addEdge('E', 'F');
 
 console.log(g.adjacencyList);
 
-console.log(g.DFSRecursive('A'));
+// console.log(g.DFSRecursive('A'));
+console.log(g.dfsIterative('A'));
