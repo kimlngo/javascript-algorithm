@@ -72,6 +72,27 @@ class Graph {
 
     return result;
   }
+
+  breathFirstSearch(start) {
+    const queue = [start];
+    const result = [];
+    const visited = {};
+
+    let cur;
+
+    while (queue.length) {
+      cur = queue.shift();
+
+      result.push(cur);
+      visited[cur] = true;
+
+      this.adjacencyList[cur]
+        .filter(neighbor => !visited[neighbor] && !queue.includes(neighbor))
+        .forEach(n => queue.push(n));
+    }
+
+    return result;
+  }
 }
 
 const g = new Graph();
@@ -94,4 +115,6 @@ g.addEdge('E', 'F');
 console.log(g.adjacencyList);
 
 // console.log(g.DFSRecursive('A'));
-console.log(g.dfsIterative('A'));
+// console.log(g.dfsIterative('A'));
+
+console.log(g.breathFirstSearch('A'));
