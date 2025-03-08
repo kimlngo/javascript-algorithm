@@ -24,8 +24,8 @@ function print(head) {
 }
 
 function deleteMiddle(head) {
-  if (head == null) return head;
-  if (head.next == null) {
+  if (head === null) return head;
+  if (head.next === null) {
     head = null;
     return head;
   }
