@@ -6,12 +6,4 @@ export class TreeNode {
     this.left = null;
     this.right = null;
   }
-
-  setLeft(left) {
-    this.left = left === undefined ? null : left;
-  }
-
-  setRight(right) {
-    this.right = right === undefined ? null : right;
-  }
 }
