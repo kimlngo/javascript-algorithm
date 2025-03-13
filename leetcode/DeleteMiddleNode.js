@@ -1,15 +1,6 @@
 'use strict';
 
-class ListNode {
-  constructor(val) {
-    this.val = val;
-    this.next = null;
-  }
-
-  setNext(node) {
-    this.next = node;
-  }
-}
+import { ListNode } from './data/ListNode.js';
 
 function print(head) {
   let cur = head;

@@ -1,15 +1,6 @@
 'use strict';
 
-class ListNode {
-  constructor(val) {
-    this.val = val;
-    this.next = null;
-  }
-
-  setNext(node) {
-    this.next = node;
-  }
-}
+import { ListNode } from './data/ListNode.js';
 
 function oddEvenList(head) {
   if (head === null || head.next == null || head.next.next == null) return head;

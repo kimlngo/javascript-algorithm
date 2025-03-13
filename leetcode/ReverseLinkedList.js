@@ -1,5 +1,7 @@
 'use strict';
 
+import { ListNode } from './data/ListNode.js';
+
 function testReverseLinkedList() {
   const head = new ListNode(1);
   const two = new ListNode(2);
@@ -39,17 +41,6 @@ function reverseLinkedList(head) {
   cur.next = null;
 
   return newHead;
-}
-
-class ListNode {
-  constructor(val) {
-    this.val = val;
-    this.next = null;
-  }
-
-  setNext(node) {
-    this.next = node;
-  }
 }
 
 testReverseLinkedList();
