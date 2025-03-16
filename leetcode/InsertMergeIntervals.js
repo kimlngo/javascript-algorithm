@@ -1,5 +1,10 @@
 'use strict';
 
+function insert(intervals, newInterval) {
+  intervals.push(newInterval);
+  return merge(intervals);
+}
+
 function merge(intervals) {
   if (intervals.length === 1) return intervals;
 
@@ -35,18 +40,28 @@ function merge(intervals) {
   return result;
 }
 
-console.log(
-  merge([
-    [1, 3],
-    [2, 6],
-    [8, 10],
-    [15, 18],
-  ])
-);
+// console.log(
+//   merge([
+//     [1, 3],
+//     [2, 6],
+//     [8, 10],
+//     [15, 18],
+//   ])
+// );
+
+// console.log(
+//   merge([
+//     [1, 4],
+//     [2, 3],
+//   ])
+// );
 
 console.log(
-  merge([
-    [1, 4],
-    [2, 3],
-  ])
+  insert(
+    [
+      [1, 3],
+      [6, 9],
+    ],
+    [2, 5]
+  )
 );
