@@ -21,4 +21,17 @@ function createLinkedList(array) {
   return head;
 }
 
-export { createLinkedList };
+function printLinkedList(head) {
+  if (!head) console.log('null linkedlist');
+
+  let cur = head;
+  let arr = [];
+  while (cur) {
+    arr.push(cur.val);
+    cur = cur.next;
+  }
+
+  console.log(arr.join(' -> '));
+}
+
+export { createLinkedList, printLinkedList };
