@@ -4,6 +4,8 @@ import { TreeNode } from './data/TreeNode.js';
 
 function hasPathSum(root, targetSum) {
   if (!root) return false;
+  let sum = 0;
+  let found = false;
 
   let holder = {
     sum: 0,
@@ -13,19 +15,19 @@ function hasPathSum(root, targetSum) {
   function traverse(node) {
     if (!node.left && !node.right) {
       //leaf node case
-      if (holder['sum'] + node.val === targetSum) holder['routeFound'] = true;
+      if (sum + node.val === targetSum) found = true;
 
       return;
     }
 
-    holder['sum'] += node.val;
+    sum += node.val;
     if (node.left) traverse(node.left);
     if (node.right) traverse(node.right);
-    holder['sum'] -= node.val;
+    sum -= node.val;
   }
 
   traverse(root);
-  return holder['routeFound'];
+  return found;
 }
 
 const root = new TreeNode(5);
