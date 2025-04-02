@@ -28,6 +28,21 @@ function levelOrder(root) {
   return result;
 }
 
+function zigzagLevelOrder(root) {
+  let levels = levelOrder(root);
+
+  if (levels.length <= 1) return levels;
+
+  for (let i = 0; i < levels.length; i++) {
+    if (i % 2 == 1) {
+      //reverse
+      levels[i] = levels[i].reverse();
+    }
+  }
+
+  return levels;
+}
+
 var root = new TreeNode(3);
 var nine = new TreeNode(9);
 var twenty = new TreeNode(20);
@@ -40,9 +55,9 @@ root.right = twenty;
 twenty.left = fifteen;
 twenty.right = seven;
 
-console.log(levelOrder(root));
+console.log(zigzagLevelOrder(root));
 
 var one = new TreeNode(1);
-console.log(levelOrder(one));
+console.log(zigzagLevelOrder(one));
 
-console.log(levelOrder(null));
+console.log(zigzagLevelOrder(null));
