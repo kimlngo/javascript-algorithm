@@ -1,5 +1,7 @@
 'use strict';
 
+import { TreeNode } from '../data/TreeNode.js';
+
 function traverseBFS(root) {
   if (!root) return console.log('Empty tree');
 
@@ -20,4 +22,8 @@ function traverseBFS(root) {
   console.log(list.map(node => node.val).join(' -> '));
 }
 
-export { traverseBFS };
+function createTreeNode(val) {
+  return new TreeNode(val);
+}
+
+export { traverseBFS, createTreeNode };
