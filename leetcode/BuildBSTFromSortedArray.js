@@ -1,6 +1,7 @@
 'use strict';
 
 import { TreeNode } from './data/TreeNode.js';
+import { isValidBST } from './ValidBST.js';
 
 function sortedArrayToBST(nums) {
   const length = nums.length;
@@ -28,4 +29,7 @@ function sortedArrayToBST(nums) {
 }
 
 const arrs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-console.log(sortedArrayToBST(arrs));
+const root = sortedArrayToBST(arrs);
+console.log(root);
+
+console.log(isValidBST(root));

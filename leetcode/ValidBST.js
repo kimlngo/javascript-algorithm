@@ -40,3 +40,5 @@ four.left = three;
 four.right = six;
 
 console.log(isValidBST(root));
+
+export { isValidBST };
