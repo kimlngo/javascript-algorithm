@@ -23,6 +23,16 @@ function fibByDP() {
     return cache[n];
   };
 }
+
+function fibByDPBottomUp(n) {
+  const cache = [0, 1];
+
+  for (let i = 2; i <= n; i++) {
+    cache[i] = cache[i - 1] + cache[i - 2];
+  }
+
+  return cache.pop();
+}
 const n = 180;
 // const start1 = Date.now();
 // console.log(naiveFib(n));
@@ -34,3 +44,8 @@ const fib = fibByDP();
 console.log(fib(n));
 const end2 = Date.now();
 console.log('Fib by DP takes: ' + (end2 - start2) + ' ms');
+
+const start3 = Date.now();
+console.log(fibByDPBottomUp(n));
+const end3 = Date.now();
+console.log('Fib by DP Bottom Up takes: ' + (end3 - start3) + ' ms');
