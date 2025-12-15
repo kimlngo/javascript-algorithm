@@ -27,4 +27,6 @@ var removeDuplicates = function (s) {
   return stack.join('');
 };
 
+console.log(removeDuplicates('abbaca'));
+console.log(removeDuplicates('azxxzy'));
 console.log(removeDuplicates('aaaaaaaaa'));
